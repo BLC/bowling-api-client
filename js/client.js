@@ -53,7 +53,7 @@ var BowlingApiClient = (function() {
   };
 
   BowlingApiClient.prototype.joinLeague = function(options) {
-    $.ajax(this.endpoint + '/league/' + options.leagueId,
+    $.ajax(this.endpoint + '/league/' + options.leagueId + '/bowler',
       $.extend(requestParams(options), {
         type: 'PUT',
         data: JSON.stringify({ id: options.bowlerId })

@@ -75,4 +75,12 @@ $(function() {
     });
     return false;
   });
+
+  $('#get-payouts').submit(function(){
+    var leagueId = this.leagueId.value;
+    var success = function() { alert('success'); };
+    var error = function() { alert('error'); };
+    client.getLeaguePayouts({ leagueId: leagueId, success: success, error: error });
+    return false;
+  });
 });

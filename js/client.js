@@ -83,5 +83,12 @@ var BowlingApiClient = (function() {
     );
   };
 
+  BowlingApiClient.prototype.getLeaguePayouts = function(options) {
+    $.ajax(this.endpoint + '/league/' + options.leagueId + '/lottery/payouts',
+      requestParams(options)
+    );
+    return false;
+  };
+
   return BowlingApiClient;
 })();

@@ -64,3 +64,11 @@ BowlingApiClient.prototype.joinLeague = function(options) {
     })
   );
 };
+
+
+BowlingApiClient.prototype.purchaseTicket = function(options) {
+  $.ajax(this.endpoint + '/lottery', $.extend(requestParams(options), {
+    type: 'POST',
+    data: JSON.stringify({ bowlerId: options.bowlerId, leagueId: options.leagueId })
+  }));
+};

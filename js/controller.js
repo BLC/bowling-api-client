@@ -46,4 +46,14 @@ $(function() {
       success: success, error: error });
     return false;
   });
+
+  $('#purchase-ticket').submit(function(){
+    var bowlerId = this.bowlerId.value;
+    var leagueId = this.leagueId.value;
+    var success = function() { alert('success'); };
+    var error = function() { alert('error'); };
+    client.purchaseTicket({ bowlerId: bowlerId, leagueId: leagueId,
+      success: success, error: error });
+    return false;
+  });
 });

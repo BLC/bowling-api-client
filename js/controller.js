@@ -36,4 +36,14 @@ $(function() {
     client.createBowler({ name: name, success: success, error: error });
     return false;
   });
+
+  $('#join-league').submit(function(){
+    var bowlerId = this.bowlerId.value;
+    var leagueId = this.leagueId.value;
+    var success = function() { alert('success'); };
+    var error = function() { alert('error'); };
+    client.joinLeague({ bowlerId: bowlerId, leagueId: leagueId,
+      success: success, error: error });
+    return false;
+  });
 });

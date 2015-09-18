@@ -54,3 +54,13 @@ BowlingApiClient.prototype.createBowler = function(options) {
     data: JSON.stringify({ name: options.name })
   }));
 };
+
+
+BowlingApiClient.prototype.joinLeague = function(options) {
+  $.ajax(this.endpoint + '/league/' + options.leagueId,
+    $.extend(requestParams(options), {
+      type: 'PUT',
+      data: JSON.stringify({ id: options.bowlerId })
+    })
+  );
+};

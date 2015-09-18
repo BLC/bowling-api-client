@@ -52,6 +52,11 @@ var BowlingApiClient = (function() {
     }));
   };
 
+  BowlingApiClient.prototype.getBowlers = function(options) {
+    $.ajax(this.endpoint + '/bowler', requestParams(options));
+    return false;
+  };
+
   BowlingApiClient.prototype.joinLeague = function(options) {
     $.ajax(this.endpoint + '/league/' + options.leagueId + '/bowler',
       $.extend(requestParams(options), {

@@ -37,6 +37,13 @@ $(function() {
     return false;
   });
 
+  $('#get-bowlers').submit(function() {
+    var success = function() { alert('success'); };
+    var error = function() { alert('error'); };
+    client.getBowlers({ success: success, error: error });
+    return false;
+  });
+
   $('#join-league').submit(function(){
     var bowlerId = this.bowlerId.value;
     var leagueId = this.leagueId.value;

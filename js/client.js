@@ -72,3 +72,9 @@ BowlingApiClient.prototype.purchaseTicket = function(options) {
     data: JSON.stringify({ bowlerId: options.bowlerId, leagueId: options.leagueId })
   }));
 };
+
+
+BowlingApiClient.prototype.drawWinner = function(options) {
+  $.ajax(this.endpoint + '/league/' + options.leagueId + '/lottery',
+  requestParams(options));
+};

@@ -56,4 +56,10 @@ $(function() {
       success: success, error: error });
     return false;
   });
+
+  $('#draw-winner').submit(function(){
+    var leagueId = this.leagueId.value;
+    client.drawWinner({ leagueId: leagueId });
+    return false;
+  });
 });

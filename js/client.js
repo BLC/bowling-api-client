@@ -73,5 +73,15 @@ var BowlingApiClient = (function() {
       requestParams(options)
     );
   };
+
+  BowlingApiClient.prototype.updateRoll = function(options) {
+    $.ajax(this.endpoint + '/league/' + options.leagueId + '/lottery',
+      $.extend(requestParams(options), {
+        type: 'PUT',
+        data: JSON.stringify({ pinsKnockedDown: options.pinsKnockedDown })
+      })
+    );
+  };
+
   return BowlingApiClient;
 })();

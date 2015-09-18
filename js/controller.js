@@ -59,7 +59,20 @@ $(function() {
 
   $('#draw-winner').submit(function(){
     var leagueId = this.leagueId.value;
-    client.drawWinner({ leagueId: leagueId });
+    var success = function() { alert('success'); };
+    var error = function() { alert('error'); };
+    client.drawWinner({ leagueId: leagueId, success: success, error: error });
+    return false;
+  });
+
+  $('#update-roll').submit(function(){
+    var leagueId = this.leagueId.value;
+    var pinsKnockedDown = this.pinsKnockedDown.value;
+    var success = function() { alert('success'); };
+    var error = function() { alert('error'); };
+    client.updateRoll({ leagueId: leagueId, pinsKnockedDown: pinsKnockedDown, success: success,
+      error: error
+    });
     return false;
   });
 });

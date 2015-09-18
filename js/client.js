@@ -1,6 +1,6 @@
 var BowlingApiClient = (function() {
-  var BowlingApiClient = function() {
-    this.endpoint = arguments[0];
+  var BowlingApiClient = function(endpoint) {
+    this.endpoint = endpoint;
   };
 
   var email, password;

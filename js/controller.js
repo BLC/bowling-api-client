@@ -25,7 +25,7 @@ $(function() {
     var name = this.name.value;
     var success = function() { alert('success'); };
     var error = function() { alert('error'); };
-    client.createLeauge({ name: name, success: success, error: error });
+    client.createLeague({ name: name, success: success, error: error });
     return false;
   });
 

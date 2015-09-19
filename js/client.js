@@ -38,7 +38,7 @@ var BowlingApiClient = (function() {
     return false;
   };
 
-  BowlingApiClient.prototype.createLeauge = function(options) {
+  BowlingApiClient.prototype.createLeague = function(options) {
     $.ajax(this.endpoint + '/league', $.extend(requestParams(options), {
       type: 'POST',
       data: JSON.stringify({ name: options.name })

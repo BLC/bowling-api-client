@@ -8,7 +8,7 @@ Integrates into the progressive jackpot programming challenge API using jquery.
 The easiest way to use this library in your project is to include it as a git submodule.
 
 ```bash
-  git submodule add git@github.com:clarkr/bowling-api-client.git ./client
+  git submodule add git@github.com:BLC/bowling-api-client.git ./client
 ```
 
 Then, include the files in your html.

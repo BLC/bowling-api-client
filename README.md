@@ -259,7 +259,7 @@ Also note that this is a very simple example API with zero expectation of securi
   client.updateRoll({
     leagueId: 1,
     lotteryId: 1,
-    pinsKnockedDown: 7,
+    pinCount: 7,
     success: function(roll) {
       console.log(roll);
     },

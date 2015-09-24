@@ -32,15 +32,15 @@ Then use it:
 
 ```javascript
   client.createUser({
-    email: 'email@exmaple.org',
+    email: 'test@exmaple.com',
     password: 'password',
     success: function(user) {
-      ['id', 'email', 'password'].forEach(function(key) {
-        console.log(user[key]);
+      Object.keys(user).forEach(function(key) {
+        console.log(key + ':' + user[key]);
       });
     },
     error: function(xhr)  {
-      console.log(JSON.parse(xhr.responseText).message);
+      console.log(JSON.parse(xhr.responseText));
     }
   });
 ```
@@ -52,12 +52,12 @@ Then use it:
     email: 'email@exmaple.org',
     password: 'password',
     success: function(user) {
-      ['id', 'email', 'password'].forEach(function(key) {
-        console.log(user[key]);
+      Object.keys(user).forEach(function(key) {
+        console.log(key + ':' + user[key]);
       });
     },
     error: function(xhr)  {
-      console.log(JSON.parse(xhr.responseText).message);
+      console.log(JSON.parse(xhr.responseText));
     }
   });
 ```
@@ -68,12 +68,12 @@ Then use it:
   client.createLeague({
     name: 'The Cats',
     success: function(league) {
-      ['id', 'userId', 'name', 'bowlers', 'jackpotBalance'].forEach(function(key) {
-        console.log(league[key]);
+      Object.keys(league).forEach(function(key) {
+        console.log(key + ':' + league[key]);
       });
     },
     error: function(xhr)  {
-      console.log(JSON.parse(xhr.responseText).message);
+      console.log(JSON.parse(xhr.responseText));
     }
   });
 ```
@@ -84,12 +84,12 @@ Then use it:
   client.createBowler ({
     name: 'Billy Bowler',
     success: function(bowler) {
-      ['id', 'userId', 'name'].forEach(function(key) {
-        console.log(bowler[key]);
+      Object.keys(bowler).forEach(function(key) {
+        console.log(key + ':' + bowler[key]);
       });
     },
     error: function(xhr)  {
-      console.log(JSON.parse(xhr.responseText).message);
+      console.log(JSON.parse(xhr.responseText));
     }
   });
 ```
@@ -97,14 +97,43 @@ Then use it:
 *Get Bowlers*
 
 ```javascript
-  client.getBowlers ({
+  client.getBowlers({
     success: function(bowlers) {
       bowlers.forEach(function(bowler) {
         console.log(bowler);
       });
     },
+    error: function(xhr) {
+      console.log(JSON.parse(xhr.responseText));
+    }
+  });
+```
+*Get Leagues*
+
+```javascript
+  client.getLeagues({
+    success: function(leagues) {
+      leagues.forEach(function(league) {
+        console.log(league);
+      });
+    },
     error: function(xhr)  {
-      console.log(JSON.parse(xhr.responseText).message);
+      console.log(JSON.parse(xhr.responseText));
+    }
+  });
+```
+*Get Lotteries for a League*
+
+```javascript
+  client.getLotteries({
+    leagueId: 1,
+    success: function(lotteries) {
+      lotteries.forEach(function(lottery) {
+        console.log(lottery);
+      });
+    },
+    error: function(xhr)  {
+      console.log(JSON.parse(xhr.responseText));
     }
   });
 ```
@@ -113,15 +142,15 @@ Then use it:
 
 ```javascript
   client.joinLeague({
-    bowlerId: 123,
-    leagueId: 456,
-    success: function(league) {
-      ['id', 'userId', 'name', 'bowlers', 'jackpotBalance'].forEach(function(key) {
-        console.log(league[key]);
+    bowlerId: 1,
+    leagueId: 1,
+    success: function(bowlers) {
+      bowlers.forEach(function(bowler) {
+        console.log(bowler);
       });
     },
     error: function(xhr)  {
-      console.log(JSON.parse(xhr.responseText).message);
+      console.log(JSON.parse(xhr.responseText));
     }
   });
 ```
@@ -130,15 +159,16 @@ Then use it:
 
 ```javascript
   client.purchaseTicket({
-    bowlerId: 123,
-    leagueId: 456,
+    bowlerId: 1,
+    leagueId: 1,
+    lotteryId: 1,
     success: function(ticket) {
-      ['id', 'date', 'bowlerId', 'leagueId'].forEach(function(key) {
-        console.log(ticket[key]);
+      Object.keys(ticket).forEach(function(key) {
+        console.log(key + ':' + ticket[key]);
       });
     },
     error: function(xhr)  {
-      console.log(JSON.parse(xhr.responseText).message);
+      console.log(JSON.parse(xhr.responseText));
     }
   });
 ```
@@ -147,14 +177,15 @@ Then use it:
 
 ```javascript
   client.drawWinner({
-    leagueId: 456,
+    leagueId: 1,
+    lotteryId: 1,
     success: function(bowler) {
-      ['id', 'userId', 'name'].forEach(function(key) {
-        console.log(bowler[key]);
+      Object.keys(bowler).forEach(function(key) {
+        console.log(key + ':' + bowler[key]);
       });
     },
     error: function(xhr)  {
-      console.log(JSON.parse(xhr.responseText).message);
+      console.log(JSON.parse(xhr.responseText));
     }
   });
 ```
@@ -163,31 +194,16 @@ Then use it:
 
 ```javascript
   client.updateRoll({
-    leagueId: 456,
+    leagueId: 1,
+    lotteryId: 1,
     pinsKnockedDown: 7,
-    success: function(payout) {
-      ['id', 'leagueId','bowlerId','date','pinsKnockedDown','payout','paidOut'].forEach(function(key) {
-        console.log(payout[key]);
+    success: function(roll) {
+      Object.keys(roll).forEach(function(key) {
+        console.log(key + ':' + roll[key]);
       });
     },
     error: function(xhr)  {
-      console.log(JSON.parse(xhr.responseText).message);
-    }
-  });
-```
-
-*Get Jackpot History*
-
-```javascript
-  client.getLeaguePayouts ({
-    leagueId: 456,
-    success: function(payouts) {
-      payouts.forEach(function(payout) {
-        console.log(payout);
-      });
-    },
-    error: function(xhr)  {
-      console.log(JSON.parse(xhr.responseText).message);
+      console.log(JSON.parse(xhr.responseText));
     }
   });
 ```

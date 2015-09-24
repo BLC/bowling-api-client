@@ -108,6 +108,7 @@ Then use it:
     }
   });
 ```
+
 *Get Leagues*
 
 ```javascript
@@ -122,6 +123,23 @@ Then use it:
     }
   });
 ```
+
+*Get Leauge Bowlers*
+
+```javascript
+  client.getLeagueBowlers({
+    leagueId: 1,
+    success: function(bowlers) {
+      bowlers.forEach(function(bowler) {
+        console.log(bowler);
+      });
+    },
+    error: function(xhr) {
+      console.log(JSON.parse(xhr.responseText));
+    }
+  });
+```
+
 *Get Lotteries for a League*
 
 ```javascript

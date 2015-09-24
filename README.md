@@ -1,17 +1,14 @@
-bowling-api-client
-==================================
+# bowling-api-client
 
-Integrates into the progressive jackpot programming challenge API using jquery.
+Integrates into the [progressive lottery programming challenge API](https://github.com/BLC/bowling-api) using jquery.
 
 ## Installation
 
-The easiest way to use this library in your project is to include it as a git submodule.
+The easiest way to use this library in your project is to include it as a git submodule and load jQuery and the library in your `index.html`:
 
 ```bash
   git submodule add git@github.com:BLC/bowling-api-client.git ./client
 ```
-
-Then, include the files in your html.
 
 ```html
   <script src='https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
@@ -28,16 +25,20 @@ Create an instance of `BowlingApiClient`:
 
 Then use it:
 
-*Create a User*
+### Users
+
+*Create a new user*
+
+Note that this will create a default league with some bowlers automatically.
+
+Also note that this is a very simple example API with zero expectation of security.
 
 ```javascript
   client.createUser({
-    email: 'test@exmaple.com',
+    email: 'test2@exmaple.com',
     password: 'password',
     success: function(user) {
-      Object.keys(user).forEach(function(key) {
-        console.log(key + ':' + user[key]);
-      });
+      console.log(user);
     },
     error: function(xhr)  {
       console.log(JSON.parse(xhr.responseText));
@@ -45,16 +46,14 @@ Then use it:
   });
 ```
 
-*Login a User*
+*Log in*
 
 ```javascript
   client.loginUser({
     email: 'email@exmaple.org',
     password: 'password',
     success: function(user) {
-      Object.keys(user).forEach(function(key) {
-        console.log(key + ':' + user[key]);
-      });
+      console.log(user);
     },
     error: function(xhr)  {
       console.log(JSON.parse(xhr.responseText));
@@ -62,31 +61,15 @@ Then use it:
   });
 ```
 
-*Create a League*
+### Bowlers
 
-```javascript
-  client.createLeague({
-    name: 'The Cats',
-    success: function(league) {
-      Object.keys(league).forEach(function(key) {
-        console.log(key + ':' + league[key]);
-      });
-    },
-    error: function(xhr)  {
-      console.log(JSON.parse(xhr.responseText));
-    }
-  });
-```
-
-*Create a Bowler*
+*Create a new bowler*
 
 ```javascript
   client.createBowler ({
     name: 'Billy Bowler',
     success: function(bowler) {
-      Object.keys(bowler).forEach(function(key) {
-        console.log(key + ':' + bowler[key]);
-      });
+      console.log(bowler);
     },
     error: function(xhr)  {
       console.log(JSON.parse(xhr.responseText));
@@ -94,14 +77,12 @@ Then use it:
   });
 ```
 
-*Get Bowlers*
+*Get all bowlers*
 
 ```javascript
   client.getBowlers({
     success: function(bowlers) {
-      bowlers.forEach(function(bowler) {
-        console.log(bowler);
-      });
+      console.log(bowlers);
     },
     error: function(xhr) {
       console.log(JSON.parse(xhr.responseText));
@@ -109,14 +90,28 @@ Then use it:
   });
 ```
 
-*Get Leagues*
+### Leagues
+
+*Create a new league*
+
+```javascript
+  client.createLeague({
+    name: 'The Cats',
+    success: function(league) {
+      console.log(league);
+    },
+    error: function(xhr)  {
+      console.log(JSON.parse(xhr.responseText));
+    }
+  });
+```
+
+*Get all leagues*
 
 ```javascript
   client.getLeagues({
     success: function(leagues) {
-      leagues.forEach(function(league) {
-        console.log(league);
-      });
+      console.log(leagues);
     },
     error: function(xhr)  {
       console.log(JSON.parse(xhr.responseText));
@@ -124,48 +119,14 @@ Then use it:
   });
 ```
 
-*Get Leauge Bowlers*
-
-```javascript
-  client.getLeagueBowlers({
-    leagueId: 1,
-    success: function(bowlers) {
-      bowlers.forEach(function(bowler) {
-        console.log(bowler);
-      });
-    },
-    error: function(xhr) {
-      console.log(JSON.parse(xhr.responseText));
-    }
-  });
-```
-
-*Get Lotteries for a League*
-
-```javascript
-  client.getLotteries({
-    leagueId: 1,
-    success: function(lotteries) {
-      lotteries.forEach(function(lottery) {
-        console.log(lottery);
-      });
-    },
-    error: function(xhr)  {
-      console.log(JSON.parse(xhr.responseText));
-    }
-  });
-```
-
-*Join a League*
+*Add a bowler to a league*
 
 ```javascript
   client.joinLeague({
     bowlerId: 1,
     leagueId: 1,
     success: function(bowlers) {
-      bowlers.forEach(function(bowler) {
-        console.log(bowler);
-      });
+      console.log(bowlers);
     },
     error: function(xhr)  {
       console.log(JSON.parse(xhr.responseText));
@@ -173,7 +134,23 @@ Then use it:
   });
 ```
 
-*Purchase a Ticket*
+### Lotteries
+
+*Get all lotteries for a league*
+
+```javascript
+  client.getLotteries({
+    leagueId: 1,
+    success: function(lotteries) {
+      console.log(lotteries);
+    },
+    error: function(xhr)  {
+      console.log(JSON.parse(xhr.responseText));
+    }
+  });
+```
+
+*Purchase a ticket for a bowler for a lottery*
 
 ```javascript
   client.purchaseTicket({
@@ -181,9 +158,7 @@ Then use it:
     leagueId: 1,
     lotteryId: 1,
     success: function(ticket) {
-      Object.keys(ticket).forEach(function(key) {
-        console.log(key + ':' + ticket[key]);
-      });
+      console.log(ticket);
     },
     error: function(xhr)  {
       console.log(JSON.parse(xhr.responseText));
@@ -191,16 +166,14 @@ Then use it:
   });
 ```
 
-*Draw a Winner*
+*Draw a winner for a lottery*
 
 ```javascript
   client.drawWinner({
     leagueId: 1,
     lotteryId: 1,
-    success: function(bowler) {
-      Object.keys(bowler).forEach(function(key) {
-        console.log(key + ':' + bowler[key]);
-      });
+    success: function(roll) {
+      console.log(roll);
     },
     error: function(xhr)  {
       console.log(JSON.parse(xhr.responseText));
@@ -208,7 +181,7 @@ Then use it:
   });
 ```
 
-*Update a Jackpot Roll*
+*Record the winning bowler's roll*
 
 ```javascript
   client.updateRoll({
@@ -216,9 +189,7 @@ Then use it:
     lotteryId: 1,
     pinsKnockedDown: 7,
     success: function(roll) {
-      Object.keys(roll).forEach(function(key) {
-        console.log(key + ':' + roll[key]);
-      });
+      console.log(roll);
     },
     error: function(xhr)  {
       console.log(JSON.parse(xhr.responseText));

@@ -35,7 +35,7 @@ Also note that this is a very simple example API with zero expectation of securi
 
 ```javascript
   client.createUser({
-    email: 'test2@exmaple.com',
+    email: 'test1@example.com',
     password: 'password',
     success: function(user) {
       console.log(user);
@@ -50,7 +50,7 @@ Also note that this is a very simple example API with zero expectation of securi
 
 ```javascript
   client.loginUser({
-    email: 'email@exmaple.org',
+    email: 'test1@example.com',
     password: 'password',
     success: function(user) {
       console.log(user);
@@ -90,6 +90,20 @@ Also note that this is a very simple example API with zero expectation of securi
   });
 ```
 
+*Get a specific bowler*
+
+```javascript
+  client.getBowler({
+    bowlerId: 1,
+    success: function(bowler) {
+      console.log(bowler);
+    },
+    error: function(xhr) {
+      console.log(JSON.parse(xhr.responseText));
+    }
+  });
+```
+
 ### Leagues
 
 *Create a new league*
@@ -119,11 +133,39 @@ Also note that this is a very simple example API with zero expectation of securi
   });
 ```
 
+*Get a specific league*
+
+```javascript
+  client.getLeague({
+    leagueId: 1,
+    success: function(league) {
+      console.log(league);
+    },
+    error: function(xhr)  {
+      console.log(JSON.parse(xhr.responseText));
+    }
+  });
+```
+
 *Add a bowler to a league*
 
 ```javascript
   client.joinLeague({
     bowlerId: 1,
+    leagueId: 1,
+    success: function(bowlers) {
+      console.log(bowlers);
+    },
+    error: function(xhr)  {
+      console.log(JSON.parse(xhr.responseText));
+    }
+  });
+```
+
+*Get all bowlers in a league*
+
+```javascript
+  client.getBowlers({
     leagueId: 1,
     success: function(bowlers) {
       console.log(bowlers);
@@ -150,6 +192,21 @@ Also note that this is a very simple example API with zero expectation of securi
   });
 ```
 
+*Get a specific lottery*
+
+```javascript
+  client.getLottery({
+    leagueId: 1,
+    lotteryId: 1,
+    success: function(lotteries) {
+      console.log(lotteries);
+    },
+    error: function(xhr)  {
+      console.log(JSON.parse(xhr.responseText));
+    }
+  });
+```
+
 *Purchase a ticket for a bowler for a lottery*
 
 ```javascript
@@ -159,6 +216,21 @@ Also note that this is a very simple example API with zero expectation of securi
     lotteryId: 1,
     success: function(ticket) {
       console.log(ticket);
+    },
+    error: function(xhr)  {
+      console.log(JSON.parse(xhr.responseText));
+    }
+  });
+```
+
+*Get all tickets for a lottery*
+
+```javascript
+  client.getTickets({
+    leagueId: 1,
+    lotteryId: 1,
+    success: function(lotteries) {
+      console.log(lotteries);
     },
     error: function(xhr)  {
       console.log(JSON.parse(xhr.responseText));
